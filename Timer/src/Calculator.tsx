@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useState, type ChangeEvent } from "react";
 import clickSound from "./ClickSound.m4a";
 
+interface Workout {
+  name: string;
+  numExercises: number;
+}
 
+type CalculatorProps = {
+  workouts: Workout[];
+  allowSound: boolean;
+};
 
-function Calculator({ workouts, allowSound }) {
-  const [number, setNumber] = useState(workouts.at(0).numExercises);
+function Calculator({ workouts, allowSound }: CalculatorProps) {
+  const [number, setNumber] = useState(workouts.at(0)!.numExercises);
   const [sets, setSets] = useState(3);
   const [speed, setSpeed] = useState(90);
   const [durationBreak, setDurationBreak] = useState(5);
@@ -39,7 +47,9 @@ function Calculator({ workouts, allowSound }) {
             min="1"
             max="5"
             value={sets}
-            onChange={(e) => setSets(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setSets(Number(e.target.value))
+            }
           />
           <span>{sets}</span>
         </div>
@@ -51,7 +61,9 @@ function Calculator({ workouts, allowSound }) {
             max="180"
             step="30"
             value={speed}
-            onChange={(e) => setSpeed(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setSpeed(Number(e.target.value))
+            }
           />
           <span>{speed} sec/exercise</span>
         </div>
@@ -62,7 +74,9 @@ function Calculator({ workouts, allowSound }) {
             min="1"
             max="10"
             value={durationBreak}
-            onChange={(e) => setDurationBreak(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setDurationBreak(Number(e.target.value))
+            }
           />
           <span>{durationBreak} minutes/break</span>
         </div>
