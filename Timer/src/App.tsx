@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Calculator from "./calculator";
+import Calculator from "./Calculator";
 import ToggleSounds from "./ToogleSounds";
 
 function App() {
