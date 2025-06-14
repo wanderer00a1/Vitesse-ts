@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent } from "react";
+import { useState, type ChangeEvent, memo } from "react";
 import clickSound from "./ClickSound.m4a";
 
 interface Workout {
@@ -94,4 +94,4 @@ function Calculator({ workouts, allowSound }: CalculatorProps) {
   );
 }
 
-export default Calculator;
+export default memo(Calculator);
